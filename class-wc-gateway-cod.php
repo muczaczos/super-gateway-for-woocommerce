@@ -397,3 +397,20 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
         $gateways[] = 'WC_Gateway_Payarek';
         return $gateways;
     }
+
+		add_filter('woocommerce_currencies', 'add_eur_currencies');
+		add_filter('woocommerce_currency_symbol', 'add_eur_currencies_symbol', 10, 2);
+
+		function add_eur_currencies($currencies){
+			$currencies['EUR'] = __('Euro', 'ocotw');
+			return $currencies;
+		}
+
+		function add_eur_currencies_symbol($currency_symbol, $currency){
+			switch($currency) {
+				case 'EUR':
+					$currency_symbol = 'EUR';
+				break;
+			}
+			return $currency_symbol;
+		}
