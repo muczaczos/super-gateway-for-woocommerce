@@ -306,8 +306,7 @@ class WC_Gateway_Payarek extends WC_Payment_Gateway {
 		$order = wc_get_order( $order_id );
 
 		if ( $order->get_total() > 0 ) {
-			// Mark as processing or on-hold (payment won't be taken until delivery).
-			$order->update_status( apply_filters( 'woocommerce_payarek_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'processing', $order ), __( 'Payment to be made upon delivery.', 'woocommerce' ) );
+			$this-> payarek_payment_processing(); 
 		} else {
 			$order->payment_complete();
 		}
@@ -320,6 +319,10 @@ class WC_Gateway_Payarek extends WC_Payment_Gateway {
 			'result'   => 'success',
 			'redirect' => $this->get_return_url( $order ),
 		);
+	}
+	private function  payarek_payment_processing() {
+		// Mark as processing or on-hold (payment won't be taken until delivery).
+		$order->update_status( apply_filters( 'woocommerce_payarek_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'processing', $order ), __( 'Payment to be made upon delivery.', 'woocommerce' ) );
 	}
 
 	/**
