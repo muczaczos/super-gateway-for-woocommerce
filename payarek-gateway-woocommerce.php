@@ -53,7 +53,7 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
         return $gateways;
 	}
 	function add_eur_currencies($currencies){
-		$currencies['EUR'] = __('Euro', 'payarek-woo');
+		$currencies['EUR'] = __('Euro', 'payarek-woo ');
 		return $currencies;
 	}
 

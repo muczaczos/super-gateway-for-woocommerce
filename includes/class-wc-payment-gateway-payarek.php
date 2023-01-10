@@ -322,7 +322,8 @@ class WC_Gateway_Payarek extends WC_Payment_Gateway {
 	}
 	private function  payarek_payment_processing() {
 		// Mark as processing or on-hold (payment won't be taken until delivery).
-		$order->update_status( apply_filters( 'woocommerce_payarek_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'processing', $order ), __( 'Payment to be made upon delivery.', 'woocommerce' ) );
+		$order->update_status( apply_filters( 'woocommerce_payarek_process_payment_order_status', $order->has_downloadable_item() ? 'on-hold' : 'processing', 
+		$order ), __( 'Payment to be made upon delivery.', 'payarek-woo' ) );
 	}
 
 	/**
