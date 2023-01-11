@@ -41,7 +41,7 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 			if(class_exists('WC_PAYMENT_GATEWAY')) {
 				require_once plugin_dir_path(__FILE__) . '/includes/class-wc-payment-gateway-payarek.php';
 				require_once plugin_dir_path(__FILE__) . '/includes/payarek-order-statuses.php';
-
+				require_once plugin_dir_path(__FILE__) . '/includes/payarek-checkout-desctiption-fields.php';
 			}
 		}
 
