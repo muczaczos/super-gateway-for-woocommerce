@@ -35,21 +35,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 	'active_plugins', get_option('active_plugins')))) return;
 
-	add_action('admin_menu', 'wpdocs_register_my_custom_menu_page');
+
 	function wpdocs_register_my_custom_menu_page(){
 		add_menu_page(
-			__('Payarek plugin', 'payarek-woo'),  //Menu title and textdomain that is help with translation
-			'Payarek plugin settings',					//Title which be displayed on setings page
+			__('Payarek plugin settings', 'payarek-woo'),  //Menu title and textdomain that is help with translation
+			'Payarek plugin',										//Title which be displayed on setings page
 			'manage_options', 									//Only users with admistrative rights can use that menu	
-			'myplugin/myplugin-admin.php',			//menu slug
+			'payarek-plugin.php',								//menu slug
 			'create_menu_page',									//callable function
 			'dashicons-testimonial',						//menu icon
 			85 																	//Order, sequence in the menu
 		);
 	}
+	add_action('admin_menu', 'wpdocs_register_my_custom_menu_page');
 
-	//add_action('admin_init','callback_function_name');
-	function callback_function_name(){
+	function create_menu_page(){
 		$url = 'https://gw.sandbox.gopay.com/api';
 
 		$arguments = array(
@@ -66,6 +66,11 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 		echo '<pre>';
 			var_dump(wp_remote_retrieve_body($response));
 		echo '</pre>';
+	}
+
+	//add_action('admin_init','callback_function_name');
+	function callback_function_name(){
+
 		
 	}
 	
