@@ -49,7 +49,7 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 		if ($query -> have_posts()){
 			while($query -> have_posts()){
-				$query -> new_post();
+				$query -> the_post();
 
 				$array = [
 					'title' => get_the_title(),
