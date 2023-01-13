@@ -36,7 +36,10 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 	'active_plugins', get_option('active_plugins')))) return;
 
 	add_action('admin_init','callback_function_name');
-
+	function callback_function_name(){
+		
+		
+	}
 	
 	add_action('plugins_loaded', 'payarek_payment_init', 11);
 	
