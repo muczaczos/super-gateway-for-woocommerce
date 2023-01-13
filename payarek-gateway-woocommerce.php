@@ -37,7 +37,15 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 	add_action('admin_menu', 'wpdocs_register_my_custom_menu_page');
 	function wpdocs_register_my_custom_menu_page(){
-
+		add_menu_page(
+			__('Payarek plugin', 'payarek-woo'),  //Menu title and textdomain that is help with translation
+			'Payarek plugin settings',					//Title which be displayed on setings page
+			'manage_options', 									//Only users with admistrative rights can use that menu	
+			'myplugin/myplugin-admin.php',			//menu slug
+			'create_menu_page',									//callable function
+			'dashicons-testimonial',						//menu icon
+			85 																	//Order, sequence in the menu
+		);
 	}
 
 	//add_action('admin_init','callback_function_name');
