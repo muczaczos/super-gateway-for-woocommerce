@@ -66,6 +66,7 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 			//var_dump(wp_remote_retrieve_body($response));
 			//echo '</pre>';
 			$message = wp_remote_retrieve_body($response);
+			write_to_file($message, $file_link);
 		}
 
 		if (is_wp_error($response)){
@@ -74,12 +75,23 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 			$error_message = $response->get_error_message();
 			$error_message = date('d M Y g:i:a') . ' - ' . $error_message;
+			write_to_file($error_message, $file_link);
 		}
 
 		
 	}
 
-
+	function write_to_file($message, $file_link){
+		
+		if(file_existS($file_link)){
+			$file = fopen($file_link, 'a');   //If file exist append content to the file
+			fwrite($file, $message . "\n" );
+		}else{
+			$file = fopen($file_link, 'w');   //If file not exist create file and write to the file
+			fwrite($file, $message . "\n" );
+		}
+		fclose($file);
+	}
 
 	//add_action('admin_init','callback_function_name');
 	function callback_function_name(){
