@@ -39,11 +39,16 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 	function callback_function_name(){
 		$url = 'https://jsonplaceholder.typicode.com/users';
 
-		$arguments = $array(
+		$arguments = array(
 			'method' => 'GET'
-		)
+		);
 
 		$response = wp_remote_get($url, $arguments);
+
+		if (is_wp_error($response)){
+			$error_message = $response->get_error_message();
+			echo "Something went wrong: $error_message";
+		}
 		
 	}
 	
