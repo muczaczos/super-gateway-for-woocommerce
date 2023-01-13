@@ -60,6 +60,8 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 		if (200 == wp_remote_retrieve_response_code($response)){
 
+			$file_link = WP_PLUGIN_DIR . '/super-gateway-for-woocommerce/data.json';
+
 			//echo '<pre>';
 			//var_dump(wp_remote_retrieve_body($response));
 			//echo '</pre>';
@@ -67,6 +69,8 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 		}
 
 		if (is_wp_error($response)){
+
+			$file_link = WP_PLUGIN_DIR . '/super-gateway-for-woocommerce/error-log.txt';
 
 			$error_message = $response->get_error_message();
 			$error_message = date('d M Y g:i:a') . ' - ' . $error_message;
