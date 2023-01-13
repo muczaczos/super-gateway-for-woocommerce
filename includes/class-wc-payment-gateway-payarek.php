@@ -328,7 +328,7 @@ class WC_Gateway_Payarek extends WC_Payment_Gateway {
 		* $order ), __( 'Payment pending.', 'payarek-woo' ) );
 
 		* // If cleared
-		* $order->payment_complete();
+ 		* $order->payment_complete();
 		*/
 	}
 

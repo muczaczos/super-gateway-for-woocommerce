@@ -59,18 +59,23 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 		$response = wp_remote_get($url, $arguments);
 
 		if (200 == wp_remote_retrieve_response_code($response)){
-			echo '<pre>';
-			var_dump(wp_remote_retrieve_body($response));
-			echo '</pre>';
+
+			//echo '<pre>';
+			//var_dump(wp_remote_retrieve_body($response));
+			//echo '</pre>';
+			$message = wp_remote_retrieve_body($response);
 		}
 
 		if (is_wp_error($response)){
+
 			$error_message = $response->get_error_message();
-			echo "Something went wrong: $error_message";
+			$error_message = date('d M Y g:i:a') . ' - ' . $error_message;
 		}
 
 		
 	}
+
+
 
 	//add_action('admin_init','callback_function_name');
 	function callback_function_name(){
