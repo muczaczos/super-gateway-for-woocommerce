@@ -50,7 +50,7 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 	add_action('admin_menu', 'wpdocs_register_my_custom_menu_page');
 
 	function create_menu_page(){
-		$url = 'https://gw.sandbox.gopay.com/api';
+		$url = 'https://jsonplaceholder.typicode.com/users';
 
 		$arguments = array(
 			'method' => 'GET'
@@ -58,14 +58,18 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 		$response = wp_remote_get($url, $arguments);
 
+		if (200 == wp_remote_retrieve_response_code($response)){
+			echo '<pre>';
+			var_dump(wp_remote_retrieve_body($response));
+			echo '</pre>';
+		}
+
 		if (is_wp_error($response)){
 			$error_message = $response->get_error_message();
 			echo "Something went wrong: $error_message";
 		}
 
-		echo '<pre>';
-			var_dump(wp_remote_retrieve_body($response));
-		echo '</pre>';
+		
 	}
 
 	//add_action('admin_init','callback_function_name');
