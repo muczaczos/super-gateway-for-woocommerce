@@ -49,6 +49,10 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 			$error_message = $response->get_error_message();
 			echo "Something went wrong: $error_message";
 		}
+
+		echo '<pre>';
+			var_dump(wp_remote_retrieve_body($response));
+		echo '</pre>';
 		
 	}
 	
