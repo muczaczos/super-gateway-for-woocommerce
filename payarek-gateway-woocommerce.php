@@ -35,14 +35,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 	'active_plugins', get_option('active_plugins')))) return;
 
+	function get_send_data(){
+			/**
+		 * Make query of our posts
+		 */
+		$args = array(
+			'post_type' => 'post',
+			'post_per_page' => 10,
+		);
+		$query = new WP_Query($args);
 
+		$datasend = [];
+
+		if ($query -> have_posts()){
+			while($query -> have_posts()){
+				$query -> new_post();
+
+				$array = [
+					'title' => get_the_title(),
+					'body' => get_the_content(),
+					'userID' => 1
+
+				];
+
+				$datasend = $array;
+			}
+		}
+
+		var_dump(json_encode($datasend));
+	}
+	
+
+	/**
+	 * Register custome admin page
+	 */
 	function wpdocs_register_my_custom_menu_page(){
 		add_menu_page(
 			__('Payarek plugin settings', 'payarek-woo'),  //Menu title and textdomain that is help with translation
 			'Payarek plugin',										//Title which be displayed on setings page
 			'manage_options', 									//Only users with admistrative rights can use that menu	
 			'payarek-plugin.php',								//menu slug
-			'create_menu_page',									//callable function
+			//'create_menu_page',									//callable function
+			'get_send_data',
 			'dashicons-testimonial',						//menu icon
 			85 																	//Order, sequence in the menu
 		);
