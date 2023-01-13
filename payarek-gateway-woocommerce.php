@@ -37,7 +37,13 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 	add_action('admin_init','callback_function_name');
 	function callback_function_name(){
-		
+		$url = 'https://jsonplaceholder.typicode.com/users';
+
+		$arguments = $array(
+			'method' => 'GET'
+		)
+
+		$response = wp_remote_get($url, $arguments);
 		
 	}
 	
