@@ -58,7 +58,7 @@ if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 
 				];
 
-				$datasend = $array;
+				array_push($datasend, $array);
 			}
 		}
 
