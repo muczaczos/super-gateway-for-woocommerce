@@ -35,9 +35,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! in_array('woocommerce/woocommerce.php', apply_filters(
 	'active_plugins', get_option('active_plugins')))) return;
 
-	add_action('admin_init','callback_function_name');
+	add_action('admin_menu', 'wpdocs_register_my_custom_menu_page');
+	function wpdocs_register_my_custom_menu_page(){
+
+	}
+
+	//add_action('admin_init','callback_function_name');
 	function callback_function_name(){
-		$url = 'https://jsonplaceholder.typicode.com/users';
+		$url = 'https://gw.sandbox.gopay.com/api';
 
 		$arguments = array(
 			'method' => 'GET'
